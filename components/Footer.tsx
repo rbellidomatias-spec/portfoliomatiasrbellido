@@ -3,13 +3,19 @@
 import { Mail, MapPin, Linkedin, Github, MessageCircle, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
+const GMAIL_COMPOSE_URL =
+  "https://mail.google.com/mail/?view=cm&fs=1&to=rbellidomatias@gmail.com&su=Colaboremos";
+
+const GMAIL_BASIC_URL =
+  "https://mail.google.com/mail/?view=cm&fs=1&to=rbellidomatias@gmail.com";
+
 export default function Footer() {
   const { t } = useLanguage();
 
   return (
     <footer id="contact" className="px-6 md:px-16 py-16 border-t border-white/5">
       <div className="max-w-4xl mx-auto text-center">
-        <p className="text-xs uppercase tracking-[0.3em] text-cyan mb-4">
+        <p className="text-sm uppercase tracking-[0.3em] text-cyan mb-4">
           {t.footer.eyebrow}
         </p>
 
@@ -17,19 +23,21 @@ export default function Footer() {
           {t.footer.title}
         </h2>
 
-        <p className="text-lg text-fg-soft max-w-xl mx-auto mb-10">
+        <p className="text-xl text-fg-soft max-w-xl mx-auto mb-10 leading-relaxed">
           {t.footer.desc}
         </p>
 
         <div className="grid sm:grid-cols-2 gap-4 mb-10 max-w-2xl mx-auto">
           <a
-            href="mailto:rbellidomatias@gmail.com"
+            href={GMAIL_BASIC_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="glass rounded-xl p-5 flex items-center gap-4 text-left hover:shadow-glow transition-all group"
           >
             <Mail className="w-5 h-5 text-cyan shrink-0" />
             <div className="flex-1 min-w-0">
-              <p className="text-[10px] uppercase tracking-wider text-fg-muted">{t.footer.emailLabel}</p>
-              <p className="text-sm truncate text-fg">rbellidomatias@gmail.com</p>
+              <p className="text-xs uppercase tracking-wider text-fg-muted">{t.footer.emailLabel}</p>
+              <p className="text-base truncate text-fg">rbellidomatias@gmail.com</p>
             </div>
             <ArrowUpRight className="w-4 h-4 text-fg-muted group-hover:text-cyan transition-all" />
           </a>
@@ -42,16 +50,18 @@ export default function Footer() {
           >
             <MapPin className="w-5 h-5 text-cyan shrink-0" />
             <div className="flex-1 min-w-0">
-              <p className="text-[10px] uppercase tracking-wider text-fg-muted">{t.footer.locationLabel}</p>
-              <p className="text-sm text-fg">{t.footer.location}</p>
+              <p className="text-xs uppercase tracking-wider text-fg-muted">{t.footer.locationLabel}</p>
+              <p className="text-base text-fg">{t.footer.location}</p>
             </div>
             <ArrowUpRight className="w-4 h-4 text-fg-muted group-hover:text-cyan transition-all" />
           </a>
         </div>
 
         <a
-          href="mailto:rbellidomatias@gmail.com?subject=Colaboremos"
-          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-electric text-white font-medium hover:shadow-glow-lg transition-all group"
+          href={GMAIL_COMPOSE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-electric text-white font-medium text-base hover:shadow-glow-lg transition-all group"
         >
           <Mail className="w-5 h-5" />
           {t.footer.cta}
@@ -66,7 +76,7 @@ export default function Footer() {
             className="glass p-3 rounded-full hover:text-cyan hover:shadow-glow transition-all"
             aria-label="LinkedIn"
           >
-            <Linkedin className="w-4 h-4" />
+            <Linkedin className="w-5 h-5" />
           </a>
           <a
             href="https://github.com/rbellidomatias-spec"
@@ -75,7 +85,7 @@ export default function Footer() {
             className="glass p-3 rounded-full hover:text-cyan hover:shadow-glow transition-all"
             aria-label="GitHub"
           >
-            <Github className="w-4 h-4" />
+            <Github className="w-5 h-5" />
           </a>
           <a
             href="https://wa.me/message/RRG5RHLSINR3M1"
@@ -84,12 +94,12 @@ export default function Footer() {
             className="glass p-3 rounded-full hover:text-cyan hover:shadow-glow transition-all"
             aria-label="WhatsApp"
           >
-            <MessageCircle className="w-4 h-4" />
+            <MessageCircle className="w-5 h-5" />
           </a>
         </div>
 
-        <p className="text-xs text-fg-faint mt-12">
-          (c) 2026 Matias Bellido - Optimizing Reality.
+        <p className="text-sm text-fg-faint mt-12">
+          (c) 2026 Matías Bellido - Optimizing Reality.
         </p>
       </div>
     </footer>

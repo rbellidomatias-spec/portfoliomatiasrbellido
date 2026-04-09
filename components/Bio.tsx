@@ -17,7 +17,7 @@ export default function Bio() {
     {
       number: "02",
       title: t.bio.categories.ai,
-      skills: ["N8N & Make", "APIs / Webhooks"],
+      skills: ["Claude w/ OpenClaw", "N8N & Make", "APIs / Webhooks"],
     },
     {
       number: "03",
@@ -27,7 +27,7 @@ export default function Bio() {
     {
       number: "04",
       title: t.bio.categories.prof,
-      skills: ["Ingles C1"],
+      skills: [t.bio.englishSkill],
     },
   ];
 
@@ -44,10 +44,10 @@ export default function Bio() {
           >
             <div className="mb-5">
               <div className="flex items-center gap-3 mb-2">
-                <span className="text-xs font-mono text-cyan/60">{category.number}</span>
+                <span className="text-sm font-mono text-cyan/60">{category.number}</span>
                 <div className="h-px flex-1 bg-gradient-to-r from-cyan/40 to-transparent" />
               </div>
-              <h3 className="text-base font-semibold text-fg tracking-wide uppercase">
+              <h3 className="text-lg font-semibold text-fg tracking-wide uppercase">
                 {category.title}
               </h3>
             </div>
@@ -56,7 +56,7 @@ export default function Bio() {
               {category.skills.map((skill) => (
                 <span
                   key={skill}
-                  className="text-sm px-4 py-2.5 rounded-full bg-electric/10 text-cyan border border-cyan/30 hover:border-cyan/70 hover:bg-electric/20 hover:scale-105 transition-all duration-300 cursor-default font-medium"
+                  className="text-base px-4 py-2.5 rounded-full bg-electric/10 text-cyan border border-cyan/30 hover:border-cyan/70 hover:bg-electric/20 hover:scale-105 transition-all duration-300 cursor-default font-medium"
                 >
                   {skill}
                 </span>
@@ -80,13 +80,13 @@ export default function Bio() {
         </div>
 
         <blockquote className="text-center">
-          <p className="font-display text-xl md:text-2xl lg:text-3xl text-fg leading-relaxed font-light italic">
+          <p className="font-sans text-2xl md:text-3xl lg:text-4xl text-fg leading-relaxed font-normal">
             &ldquo;{t.bio.manifesto}&rdquo;
           </p>
 
-          <footer className="mt-8 flex items-center justify-center gap-3">
+          <footer className="mt-10 flex items-center justify-center gap-3">
             <div className="h-px w-12 bg-cyan/40" />
-            <cite className="text-sm uppercase tracking-[0.25em] text-cyan not-italic font-medium">
+            <cite className="text-base uppercase tracking-[0.25em] text-cyan not-italic font-medium">
               Matias Bellido
             </cite>
             <div className="h-px w-12 bg-cyan/40" />

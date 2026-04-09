@@ -7,24 +7,16 @@ import { Lock, Clock, X, Mail } from "lucide-react";
 import Section from "./Section";
 import { useLanguage } from "@/context/LanguageContext";
 
-const sideProjects = [
+const sideProjectsMeta = [
   {
     id: "budgents",
     image: "/projects/Imagenes/agents.png",
-    date: "Abr - Dec 2025",
-    category: "Automatizacion - +3 PYMEs",
-    title: "Budgents - AI Agents",
-    desc: "Desarrollo de ecosistemas para escalar la atencion al cliente sin perder calidad, permitiendo el foco en actividades de alto impacto. Evolucione de Make a n8n para maximizar la flexibilidad tecnica e integrar un mayor volumen de APIs. La solucion automatiza el primer contacto, la calificacion de leads y el agendamiento para PYMEs y marcas personales. Mediante webhooks e integracion con Supabase, toda la data se registra y organiza automaticamente en tiempo real para un seguimiento estrategico impecable.",
     tags: ["LLMs", "APIs", "Webhooks", "N8N"],
   },
   {
-    id: "nutrioptimizer",
+    id: "nutriops",
     image: "/projects/Imagenes/solver.png",
-    date: "2024",
-    category: "Investigacion Operativa - Actuarial",
-    title: "NutriOptimizer: Linear Programming for Health & Finance",
-    desc: "Modelo de programacion lineal desarrollado en Excel Solver que maximiza el rendimiento nutricional bajo restricciones presupuestarias estrictas. La herramienta optimiza la seleccion de alimentos para cumplir con objetivos diarios de macronutrientes al menor costo posible, aplicando principios de investigacion operativa al cruce entre salud y finanzas personales.",
-    tags: ["Excel Solver", "Linear Programming", "Optimization", "Operations Research"],
+    tags: ["Excel Solver", "Linear Programming", "Web Scraping", "Operations Research"],
   },
 ];
 
@@ -35,6 +27,12 @@ export default function Projects() {
   const [email, setEmail] = useState("");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const lockControls = useAnimation();
+
+  // Build full projects array combining metadata + translations
+  const sideProjects = sideProjectsMeta.map((meta) => {
+    const content = meta.id === "budgents" ? t.projects.budgents : t.projects.nutriops;
+    return { ...meta, ...content };
+  });
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
