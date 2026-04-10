@@ -231,10 +231,6 @@ export const translations: Record<Lang, Dict> = {
       ],
 
       // ============ EDUCACIÓN ============
-      // Para editar tu educación, modificá los objetos aquí.
-      // longDesc es el texto que aparece cuando el usuario hace click para expandir.
-      // Para hacer un salto de párrafo dentro de longDesc, usá \n\n
-      // Para hacer una línea con bullet, empezá con "• " (punto + espacio)
       education: [
         // ─── EDUCACIÓN #1: UBA ───
         {
@@ -258,8 +254,6 @@ export const translations: Record<Lang, Dict> = {
     },
 
     // ───────────────── SECCIÓN PROYECTOS ─────────────────
-    // Symbiosis AI es el proyecto FLAGSHIP (grande, izquierda).
-    // Budgents y NutriOps son los SIDE PROJECTS (a la derecha, expandibles).
     projects: {
       eyebrow: "Work",
       title: "Proyectos",
@@ -271,7 +265,7 @@ export const translations: Record<Lang, Dict> = {
         clickHint: "Click para recibir novedades",
         meta: "Abr 2026 - En desarrollo - Flagship",
         title: "Symbiosis AI",
-        desc: "Nace de una investigación propia: encuesté a 100+ estudiantes universitarios en CABA y detecté el Execution Gap - la brecha entre saber y hacer. Symbiosis es un sistema de agentes de IA que cierra esa brecha: traduce objetivos en acciones concretas, monitorea cumplimiento y ajusta el plan en tiempo real.",
+        desc: "Tras encuestar a +80 estudiantes universitarios en CABA de entre 17-28 años, identifiqué una frustración constante: el miedo a quedar obsoletos frente a las herramientas que exige el mercado laboral actual. SymbiosisAI nace para cerrar esa brecha. No es solo una plataforma de estudio, es un ecosistema que enseña material de estudio universitario a través de la programación y el uso de tecnología real. Monitorea el progreso en tiempo real y ajusta el plan de aprendizaje para que el estudiante no solo apruebe sus materias, sino que domine las herramientas que lo harán competitivo el día de mañana.",
       },
 
       // ============ SIDE PROJECT #1: BUDGENTS ============
@@ -357,9 +351,7 @@ export const translations: Record<Lang, Dict> = {
       educationTitle: "Education",
       coursesTitle: "Complementary Training",
 
-      // ============ WORK EXPERIENCE ============
       items: [
-        // ─── JOB #1: Academic Tutor ───
         {
           period: "Apr 2024 - Present",
           role: "Private Academic Tutor",
@@ -368,7 +360,6 @@ export const translations: Record<Lang, Dict> = {
           desc: "I coordinate a staff of teachers covering demand at primary, secondary, and university levels. I teach advanced classes in Mathematical Analysis, Linear Algebra, and Descriptive Statistics (UBA CBC and First Year), translating abstract concepts to each student's pace.",
           tags: ["Leadership", "Teaching", "Team Management"],
         },
-        // ─── JOB #2: Personal Trainer ───
         {
           period: "Jun 2023 - Present",
           role: "Personal Trainer & Wellness Coach",
@@ -377,7 +368,6 @@ export const translations: Record<Lang, Dict> = {
           desc: "End-to-end management of client portfolio with data-driven planning. I design mesocycles adjusting volume and intensity according to weekly physical KPIs. I set clear metrics and monitor progress to guarantee adherence and results.",
           tags: ["KPIs", "Strategic Planning", "Retention"],
         },
-        // ─── JOB #3: Arcos Dorados ───
         {
           period: "Dec 2024 - Nov 2025",
           role: "Customer Experience",
@@ -386,7 +376,6 @@ export const translations: Record<Lang, Dict> = {
           desc: "Intense work experience in a corporate environment with high operational standards. Precise execution of standardized processes under time and efficiency metrics, problem-solving in high-demand moments, and constant coordination with staff.",
           tags: ["Operations", "Teamwork", "High Pressure"],
         },
-        // ─── JOB #4: SomeClub ───
         {
           period: "Aug 2024 - Dec 2024",
           role: "Business Development Manager",
@@ -395,7 +384,6 @@ export const translations: Record<Lang, Dict> = {
           desc: "Role focused on strategic prospecting and lead qualification for the sales team. CRM database management and updates, funnel analysis (response rate, scheduling), and B2B/B2C communication identifying pain points in potential clients.",
           tags: ["CRM", "Funnel Analysis", "B2B/B2C"],
         },
-        // ─── JOB #5: FIAT Argentina ───
         {
           period: "Feb 2024 - Apr 2024",
           role: "Sales Consultant",
@@ -404,7 +392,6 @@ export const translations: Record<Lang, Dict> = {
           desc: "End-to-end management of the sales cycle and commercial advisory in the automotive sector, focused on monthly target achievement and customer satisfaction. Closing through consultative negotiation techniques and objection handling.",
           tags: ["Negotiation", "Sales", "Sales KPIs"],
         },
-        // ─── JOB #6: Fundación Apolo ───
         {
           period: "Aug 2023 - Dec 2023",
           role: "Research Assistant (Intern)",
@@ -415,9 +402,7 @@ export const translations: Record<Lang, Dict> = {
         },
       ],
 
-      // ============ EDUCATION ============
       education: [
-        // ─── EDUCATION #1: UBA ───
         {
           period: "Apr 2023 - Oct 2028",
           institution: "University of Buenos Aires",
@@ -426,7 +411,6 @@ export const translations: Record<Lang, Dict> = {
           longDesc:
             "Academic focus on Quantitative Methods, Mathematical Statistics, and Macroeconomics. Independent research in Data Science and the application of algorithms (Python/R) to actuarial models. Focus on the integration of mathematical models with computational tools and business process analysis.\n\nFeatured Project: Applied Mathematics I (Computational Modeling)\n• Development of a Python algorithm using the NumPy library for the automated calculation of eigenvalues and eigenvectors.\n• Practical implementation of Linear Algebra concepts to optimize matrix and equation system analysis.\n\nFeatured Project: Administrative Systems (Real Case: Dar Sentido S.R.L.)\n• Process Consulting: Diagnosis and redesign of the Procurement circuit at a certified B Corp, using sectoral interdependence diagrams.\n• Risk Management and Internal Control: Detection of weaknesses in segregation of duties and design of a new preventive and documentary control framework.\n• Organizational Analysis: Evaluation of structure and coordination mechanisms to optimize strategic decision-making.",
         },
-        // ─── EDUCATION #2: Santa Teresa de Jesús School ───
         {
           period: "Mar 2018 - Nov 2023",
           institution: "Santa Teresa de Jesús School",
@@ -450,7 +434,7 @@ export const translations: Record<Lang, Dict> = {
         clickHint: "Click to receive updates",
         meta: "Apr 2026 - In development - Flagship",
         title: "Symbiosis AI",
-        desc: "Born from original research: I surveyed 100+ university students in Buenos Aires and identified the Execution Gap - the distance between knowing and doing. Symbiosis is an AI agent system that closes that gap: it translates goals into concrete actions, monitors compliance, and adjusts the plan in real time.",
+        desc: "After surveying 80+ university students in Buenos Aires aged 17-28, I identified a constant frustration: the fear of becoming obsolete against the tools demanded by today's job market. SymbiosisAI was born to close that gap. It's not just a study platform, it's an ecosystem that teaches university material through programming and the use of real technology. It monitors progress in real time and adjusts the learning plan so that students don't just pass their courses, but master the tools that will make them competitive tomorrow.",
       },
 
       // ============ SIDE PROJECT #1: BUDGENTS ============
@@ -469,7 +453,6 @@ export const translations: Record<Lang, Dict> = {
         desc: "One of my side-hustles is being a personal trainer, and many clients face the same problem: they don't know how to grocery shop efficiently to follow their nutrition plan without overspending. That's why I built NutriOps, a linear programming model that maximizes nutritional performance under budget constraints. The system is fed by a web scraping pipeline that extracts, in real time, prices and stock from the main supermarket chains in Buenos Aires. Through Excel Solver, the model processes this data to generate the optimal food combination at the lowest possible cost.",
       },
 
-      // ============ SYMBIOSIS EMAIL MODAL ============
       modal: {
         title: "I want in",
         desc: "Symbiosis AI is under construction. Drop your email and I'll let you know when it launches.",
