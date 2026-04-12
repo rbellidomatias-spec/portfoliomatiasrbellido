@@ -261,7 +261,7 @@ export const translations: Record<Lang, Dict> = {
       imports: {
         date: "Marzo 2025",
         category: "Importaciones - E-commerce",
-        title: "Imports Bellido",
+        title: "Bellido Importaciones",
         desc: "Lo que comenzó en el nicho de la perfumería evolucionó hacia un servicio de importaciones minoristas 100% bajo pedido, eliminando costos operativos de stock y maximizando la eficiencia del capital. Mi enfoque central es conectar el mercado de Estados Unidos con el público local, garantizando precios competitivos mediante el análisis de ofertas internacionales.\n\nMi valor agregado no termina ahí: también optimizo la adquisición de productos nacionales. Me encargo de rastrear los mejores precios locales contactando directamente con proveedores para evitar sobrecostos de intermediarios. Me especializo en detectar oportunidades de ahorro en cualquier categoría y negociar condiciones ventajosas, logrando un equilibrio real entre la logística estratégica y la inteligencia financiera.",
       },
 
@@ -433,7 +433,7 @@ export const translations: Record<Lang, Dict> = {
       imports: {
         date: "March 2025",
         category: "Imports - E-commerce",
-        title: "Imports Bellido",
+        title: "Bellido Importaciones",
         desc: "What started in the perfumery niche evolved into a 100% on-demand retail import service, eliminating stock operating costs and maximizing capital efficiency. My core focus is connecting the United States market with the local audience, ensuring competitive prices through the analysis of international offers.\n\nMy value-add doesn't end there: I also optimize the acquisition of domestic products. I track the best local prices by contacting suppliers directly to avoid intermediary markups. I specialize in detecting savings opportunities across any category and negotiating advantageous conditions, achieving a real balance between strategic logistics and financial intelligence.",
       },
 
