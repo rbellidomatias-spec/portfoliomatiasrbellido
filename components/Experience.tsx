@@ -64,20 +64,6 @@ export default function Experience() {
     return () => { document.body.style.overflow = ""; };
   }, [expandedIdx]);
 
-  useEffect(() => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
-    const handleScroll = () => {
-      const cards = carousel.querySelectorAll("[data-card]");
-      if (cards.length === 0) return;
-      const cardWidth = (cards[0] as HTMLElement).offsetWidth + 24;
-      const idx = Math.round(carousel.scrollLeft / cardWidth);
-      setActiveCard(Math.min(idx, cards.length - 1));
-    };
-    carousel.addEventListener("scroll", handleScroll, { passive: true });
-    return () => carousel.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const scrollToCard = (idx: number) => {
     const carousel = carouselRef.current;
     if (!carousel) return;
@@ -85,6 +71,7 @@ export default function Experience() {
     if (!cards[idx]) return;
     const cardWidth = (cards[0] as HTMLElement).offsetWidth + 24;
     carousel.scrollTo({ left: cardWidth * idx, behavior: "smooth" });
+    setActiveCard(idx);
   };
 
   const scrollPrev = () => scrollToCard(Math.max(0, activeCard - 1));
@@ -95,6 +82,7 @@ export default function Experience() {
   const expandedEdu = expandedIdx !== null ? t.experience.education[expandedIdx] : null;
   const expandedLogo = expandedIdx !== null ? educationLogos[expandedIdx] : null;
   const isAtEnd = activeCard === t.experience.items.length - 1;
+  const totalCards = t.experience.items.length;
 
   return (
     <Section id="experience" eyebrow={t.experience.eyebrow} title={t.experience.title}>
@@ -107,7 +95,8 @@ export default function Experience() {
               {t.experience.experienceTitle}
             </h3>
           </div>
-          <div className="hidden md:flex items-center gap-2">
+          {/* Flechas - ahora visibles también en mobile (única forma de navegar) */}
+          <div className="flex items-center gap-2">
             <button onClick={scrollPrev} disabled={activeCard === 0} aria-label="Previous"
               className="p-2 rounded-full glass hover:shadow-glow transition-all disabled:opacity-10 disabled:cursor-not-allowed disabled:hover:shadow-none touch-manipulation">
               <ChevronLeft className="w-5 h-5 text-cyan" />
@@ -119,68 +108,80 @@ export default function Experience() {
           </div>
         </div>
 
-        <div className="relative">
-          <div ref={carouselRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-4 -mx-6 px-6 md:-mx-16 md:px-16"
-            style={{ scrollPaddingLeft: "1.5rem" }}>
-            {t.experience.items.map((item, i) => (
-              <motion.div
-                key={item.role + item.company}
-                data-card
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="snap-start shrink-0 w-[85vw] sm:w-[400px] md:w-[440px]"
-              >
-                <div className="glass rounded-xl p-6 h-full flex flex-col hover:shadow-glow transition-all">
-                  {/* Header con logo a la izquierda */}
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="shrink-0 relative w-14 h-14 rounded-xl overflow-hidden bg-white border border-cyan/30">
-                      <Image src={experienceLogos[i]} alt={item.company} fill sizes="56px" className="object-contain p-1" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs uppercase tracking-[0.2em] text-cyan/80 mb-1 font-mono">{item.period}</p>
-                      <h4 className="font-display text-lg md:text-xl font-bold text-fg leading-tight">{item.role}</h4>
-                      <p className="text-base text-cyan">{item.company}</p>
-                    </div>
+        {/* Scroll container - SIN scroll manual (overflow-x-hidden) */}
+        <div ref={carouselRef}
+          className="flex gap-6 overflow-x-hidden no-scrollbar pb-2 -mx-6 px-6 md:-mx-16 md:px-16">
+          {t.experience.items.map((item, i) => (
+            <motion.div
+              key={item.role + item.company}
+              data-card
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className="shrink-0 w-[85vw] sm:w-[400px] md:w-[440px]"
+            >
+              <div className="glass rounded-xl p-6 h-full flex flex-col hover:shadow-glow transition-all">
+                {/* Header con logo - SIN fondo blanco, transparente para PNGs */}
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="shrink-0 relative w-14 h-14 rounded-xl overflow-hidden">
+                    <Image
+                      src={experienceLogos[i]}
+                      alt={item.company}
+                      fill
+                      sizes="56px"
+                      className="object-contain"
+                    />
                   </div>
-                  <p className="text-xs text-fg-muted uppercase tracking-wider mb-3">{item.type}</p>
-                  <p className="text-sm md:text-base text-fg-soft leading-relaxed mb-4 flex-1">{item.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {item.tags.map((tag) => (
-                      <span key={tag} className="text-xs px-3 py-1 rounded-full bg-electric/10 text-cyan border border-cyan/20">{tag}</span>
-                    ))}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs uppercase tracking-[0.2em] text-cyan/80 mb-1 font-mono">{item.period}</p>
+                    <h4 className="font-display text-lg md:text-xl font-bold text-fg leading-tight">{item.role}</h4>
+                    <p className="text-base text-cyan">{item.company}</p>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-          {/* Right fade when not at end */}
-          {!isAtEnd && (
-            <div className="absolute right-0 top-0 bottom-4 w-20 pointer-events-none bg-gradient-to-l from-[var(--bg)] via-[var(--bg)]/60 to-transparent hidden md:block" />
-          )}
+                <p className="text-xs text-fg-muted uppercase tracking-wider mb-3">{item.type}</p>
+                <p className="text-sm md:text-base text-fg-soft leading-relaxed mb-4 flex-1">{item.desc}</p>
+                <div className="flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <span key={tag} className="text-xs px-3 py-1 rounded-full bg-electric/10 text-cyan border border-cyan/20">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Progress dots */}
-        <div className="flex items-center justify-center gap-2 mt-6">
+        {/* PROGRESS BAR - puntos que se van llenando */}
+        <div className="flex items-center justify-center gap-2 mt-8">
           {t.experience.items.map((_, i) => (
-            <button key={i} onClick={() => scrollToCard(i)} aria-label={`Go to experience ${i + 1}`} className="touch-manipulation p-1.5">
-              <div className={`h-1.5 rounded-full transition-all ${activeCard === i ? "w-8 bg-cyan" : "w-1.5 bg-cyan/30 hover:bg-cyan/60"}`} />
+            <button
+              key={i}
+              onClick={() => scrollToCard(i)}
+              aria-label={`Go to experience ${i + 1}`}
+              className="touch-manipulation p-1.5 group"
+            >
+              <div
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i <= activeCard
+                    ? "w-10 bg-cyan shadow-[0_0_10px_rgba(0,229,255,0.5)]"
+                    : "w-2 bg-cyan/20 group-hover:bg-cyan/50"
+                }`}
+              />
             </button>
           ))}
         </div>
 
-        {/* End indicator */}
-        {isAtEnd && (
-          <p className="text-center text-xs text-cyan/60 mt-3 uppercase tracking-wider">
-            {lang === "es" ? "— Fin de la experiencia —" : "— End of experience —"}
+        {/* Counter "X de N" + indicador de fin */}
+        <div className="text-center mt-3">
+          <p className="text-xs text-cyan/60 uppercase tracking-wider font-mono">
+            {activeCard + 1} / {totalCards}
+            {isAtEnd && (
+              <span className="ml-3 text-cyan">
+                {lang === "es" ? "— Fin —" : "— End —"}
+              </span>
+            )}
           </p>
-        )}
-
-        <p className="text-center text-xs text-fg-muted mt-3 md:hidden uppercase tracking-wider">
-          {lang === "es" ? "← Deslizá para ver más →" : "← Swipe to see more →"}
-        </p>
+        </div>
       </div>
 
       {/* EDUCACIÓN + FORMACIÓN */}
@@ -194,8 +195,8 @@ export default function Experience() {
             {t.experience.education.map((item, i) => (
               <motion.div key={item.institution} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: i * 0.1 }} onClick={() => setExpandedIdx(i)} className="glass rounded-xl p-5 md:p-6 hover:shadow-glow transition-all cursor-pointer group touch-manipulation">
                 <div className="flex items-start gap-4">
-                  <div className="shrink-0 relative w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden bg-white border border-cyan/30">
-                    <Image src={educationLogos[i]} alt={item.institution} fill sizes="80px" className="object-contain p-1" />
+                  <div className="shrink-0 relative w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden">
+                    <Image src={educationLogos[i]} alt={item.institution} fill sizes="80px" className="object-contain" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-xs uppercase tracking-[0.2em] text-cyan/80 mb-2 font-mono">{item.period}</p>
@@ -248,8 +249,8 @@ export default function Experience() {
                   <AnimatePresence mode="wait">
                     <motion.div key={`edu-${expandedIdx}-${lang}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.25 }}>
                       <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-6 mb-8 pr-24 md:pr-28">
-                        <div className="shrink-0 relative w-20 h-20 md:w-28 md:h-28 rounded-2xl overflow-hidden bg-white border border-cyan/30">
-                          <Image src={expandedLogo} alt={expandedEdu.institution} fill sizes="112px" className="object-contain p-2" />
+                        <div className="shrink-0 relative w-20 h-20 md:w-28 md:h-28 rounded-2xl overflow-hidden">
+                          <Image src={expandedLogo} alt={expandedEdu.institution} fill sizes="112px" className="object-contain" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-xs uppercase tracking-[0.2em] text-cyan/80 mb-2 font-mono">{expandedEdu.period}</p>
