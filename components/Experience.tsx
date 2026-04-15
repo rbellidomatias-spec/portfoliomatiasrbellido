@@ -64,6 +64,21 @@ export default function Experience() {
     return () => { document.body.style.overflow = ""; };
   }, [expandedIdx]);
 
+  // Listener de scroll para sincronizar la activeCard con scroll manual (dedo/mouse)
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+    const handleScroll = () => {
+      const cards = carousel.querySelectorAll("[data-card]");
+      if (cards.length === 0) return;
+      const cardWidth = (cards[0] as HTMLElement).offsetWidth + 24;
+      const idx = Math.round(carousel.scrollLeft / cardWidth);
+      setActiveCard(Math.min(idx, cards.length - 1));
+    };
+    carousel.addEventListener("scroll", handleScroll, { passive: true });
+    return () => carousel.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToCard = (idx: number) => {
     const carousel = carouselRef.current;
     if (!carousel) return;
@@ -71,7 +86,6 @@ export default function Experience() {
     if (!cards[idx]) return;
     const cardWidth = (cards[0] as HTMLElement).offsetWidth + 24;
     carousel.scrollTo({ left: cardWidth * idx, behavior: "smooth" });
-    setActiveCard(idx);
   };
 
   const scrollPrev = () => scrollToCard(Math.max(0, activeCard - 1));
@@ -95,8 +109,8 @@ export default function Experience() {
               {t.experience.experienceTitle}
             </h3>
           </div>
-          {/* Flechas - ahora visibles también en mobile (única forma de navegar) */}
-          <div className="flex items-center gap-2">
+          {/* Flechas - solo en desktop. Mobile usa swipe */}
+          <div className="hidden md:flex items-center gap-2">
             <button onClick={scrollPrev} disabled={activeCard === 0} aria-label="Previous"
               className="p-2 rounded-full glass hover:shadow-glow transition-all disabled:opacity-10 disabled:cursor-not-allowed disabled:hover:shadow-none touch-manipulation">
               <ChevronLeft className="w-5 h-5 text-cyan" />
@@ -108,9 +122,10 @@ export default function Experience() {
           </div>
         </div>
 
-        {/* Scroll container - SIN scroll manual (overflow-x-hidden) */}
+        {/* Scroll container - scroll manual habilitado (overflow-x-auto) + scrollbar oculta (no-scrollbar) + scroll-snap */}
         <div ref={carouselRef}
-          className="flex gap-6 overflow-x-hidden no-scrollbar pb-2 -mx-6 px-6 md:-mx-16 md:px-16">
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 -mx-6 px-6 md:-mx-16 md:px-16"
+          style={{ scrollPaddingLeft: "1.5rem" }}>
           {t.experience.items.map((item, i) => (
             <motion.div
               key={item.role + item.company}
@@ -119,7 +134,7 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
-              className="shrink-0 w-[85vw] sm:w-[400px] md:w-[440px]"
+              className="snap-start shrink-0 w-[85vw] sm:w-[400px] md:w-[440px]"
             >
               <div className="glass rounded-xl p-6 h-full flex flex-col hover:shadow-glow transition-all">
                 {/* Header con logo - SIN fondo blanco, transparente para PNGs */}
@@ -182,6 +197,11 @@ export default function Experience() {
             )}
           </p>
         </div>
+
+        {/* Hint de swipe solo en mobile */}
+        <p className="text-center text-xs text-fg-muted mt-2 md:hidden uppercase tracking-wider">
+          {lang === "es" ? "← Deslizá para ver más →" : "← Swipe to see more →"}
+        </p>
       </div>
 
       {/* EDUCACIÓN + FORMACIÓN */}
