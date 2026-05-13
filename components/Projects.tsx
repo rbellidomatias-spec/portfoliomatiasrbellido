@@ -12,7 +12,7 @@ import { useModal } from "@/context/ModalContext";
 // PROPOSAL/RESUMEN LINKS — completá manualmente las URLs faltantes
 // ============================================================================
 const SYMBIOSIS_PROPOSAL_URL = "";
-const BUDGENTS_PROPOSAL_URL = "";
+const BUDGENTS_PROPOSAL_URL = "/projects/Imagenes/Budgents.pdf";
 const NUTRIOPS_PROPOSAL_URL = "";
 const IMPORTS_PROPOSAL_URL = "/projects/Imagenes/Importaciones.pdf";
 const ASESORAMIENTOS_FITNESS_URL = "https://canva.link/yj6is9jfjf8y3j3";
@@ -82,7 +82,6 @@ export default function Projects() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const lockControls = useAnimation();
 
-  // Lookup explícito por id (no asume orden)
   const digitalProjects = digitalProjectsMeta.map((meta) => {
     const content = meta.id === "nutriops" ? t.projects.nutriops : t.projects.budgents;
     return { ...meta, ...content };

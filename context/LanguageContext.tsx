@@ -124,8 +124,8 @@ export const translations: Record<Lang, Dict> = {
     nav: {
       home: "Inicio",
       skills: "Habilidades",
-      experience: "Experiencia",
       projects: "Proyectos",
+      experience: "Experiencia",
       contact: "Contacto",
     },
     hero: {
@@ -284,7 +284,7 @@ export const translations: Record<Lang, Dict> = {
     footer: {
       eyebrow: "Contacto",
       title: "Colaboremos",
-      desc: "Abierto a oportunidades en Data, Finanzas y proyectos de IA aplicada.",
+      desc: "Abierto a colaboraciones, eventos y conversaciones sobre IA, Data y Emprendimientos.",
       emailLabel: "Email",
       locationLabel: "Ubicación",
       location: "CABA, Argentina",
@@ -299,8 +299,8 @@ export const translations: Record<Lang, Dict> = {
     nav: {
       home: "Home",
       skills: "Skills",
-      experience: "Experience",
       projects: "Projects",
+      experience: "Experience",
       contact: "Contact",
     },
     hero: {
@@ -454,7 +454,7 @@ export const translations: Record<Lang, Dict> = {
     footer: {
       eyebrow: "Contact",
       title: "Let's Collaborate",
-      desc: "Open to opportunities in Data, Finance, and applied AI projects.",
+      desc: "Open to collaborations, events, and conversations about AI, Data, and Entrepreneurship.",
       emailLabel: "Email",
       locationLabel: "Location",
       location: "Buenos Aires, Argentina",
