@@ -207,7 +207,7 @@ export const translations: Record<Lang, Dict> = {
       ],
       education: [
         {
-          period: "Abr 2023 - Oct 2028",
+          period: "Abr 2024 - Oct 2028",
           institution: "Universidad de Buenos Aires",
           degree: "Actuario - Actuarial Science",
           desc: "Foco académico en Métodos Cuantitativos, Estadística Matemática y Macroeconomía. Investigación independiente en Data Science y aplicación de algoritmos (Python/R) a modelos actuariales.",
@@ -382,7 +382,7 @@ export const translations: Record<Lang, Dict> = {
       ],
       education: [
         {
-          period: "Apr 2023 - Oct 2028",
+          period: "Apr 2024 - Oct 2028",
           institution: "University of Buenos Aires",
           degree: "Actuarial Science",
           desc: "Academic focus on Quantitative Methods, Mathematical Statistics, and Macroeconomics. Independent research in Data Science and the application of algorithms (Python/R) to actuarial models.",
